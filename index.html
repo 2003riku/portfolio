@@ -1,1 +1,674 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>業務自動化エキスパート | GAS・Make専門家</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="theme-toggle">
+        <button id="theme-switch">
+            <i class="fas fa-moon"></i>
+            <span>ダークモード</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1>AutoFlow<span>Expert</span></h1>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">ホーム</a></li>
+                    <li><a href="#about">プロフィール</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#portfolio">実績</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                    <li><a href="#blog">ブログ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-text">業務自動化で<span class="highlight">時間と労力</span>を解放</h1>
+                <p>Google Apps ScriptとMakeを活用した<br>業務効率化・自動化ソリューションを提供</p>
+                <div class="hero-cta">
+                    <a href="#services" class="btn primary-btn">サービスを見る</a>
+                    <a href="#portfolio" class="btn secondary-btn">実績を見る</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="automation-graphic">
+                    <div class="node node-1">
+                        <i class="fas fa-file-alt"></i>
+                        <span>データ入力</span>
+                    </div>
+                    <div class="arrow arrow-1">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    <div class="node node-2">
+                        <i class="fas fa-cogs"></i>
+                        <span>自動処理</span>
+                    </div>
+                    <div class="arrow arrow-2">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    <div class="node node-3">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>結果出力</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>スクロールして詳細を見る</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>プロフィール</h2>
+                <p>自動化のプロフェッショナルとして</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="profile-image">
+                        <img src="https://via.placeholder.com/400x400" alt="プロフィール画像">
+                    </div>
+                    <div class="experience-badge">
+                        <span>5年以上</span>
+                        <p>自動化開発経験</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>はじめまして、<span class="highlight">AutoFlowExpert</span>です</h3>
+                    <p>Google Apps Script (GAS) とMakeを専門とする業務自動化エキスパートとして、様々な企業や個人事業主の方々の業務効率化をサポートしています。</p>
+                    <p>私のミッションは、「テクノロジーの力で人々の創造的な時間を増やすこと」。日々の単調な作業から解放され、本来注力すべき業務に集中できる環境づくりをお手伝いします。</p>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <span>Google Apps Script</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Make (旧Integromat)</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>WordPress連携</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Notion/Slack連携</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn primary-btn">お問い合わせる</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>サービス</h2>
+                <p>提供する自動化ソリューション</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Google Apps Script開発</h3>
+                    <p>Google Workspace（スプレッドシート、フォーム、ドキュメントなど）を活用した業務自動化スクリプトの開発を行います。</p>
+                    <ul class="service-features">
+                        <li>データ自動集計・分析</li>
+                        <li>定期レポート自動生成</li>
+                        <li>フォーム連携自動処理</li>
+                        <li>カスタムUI開発</li>
+                    </ul>
+                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Make連携シナリオ構築</h3>
+                    <p>様々なWebサービスを連携させ、データの自動連携・処理を実現するMakeシナリオを構築します。</p>
+                    <ul class="service-features">
+                        <li>WordPress連携自動化</li>
+                        <li>CRM・顧客管理連携</li>
+                        <li>SNS自動投稿・管理</li>
+                        <li>Eコマース処理自動化</li>
+                    </ul>
+                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Notion/Slack連携開発</h3>
+                    <p>NotionやSlackを中心としたワークスペース環境の自動化・効率化を実現します。</p>
+                    <ul class="service-features">
+                        <li>Notionデータベース自動更新</li>
+                        <li>Slack通知自動化</li>
+                        <li>タスク管理自動化</li>
+                        <li>情報集約ダッシュボード</li>
+                    </ul>
+                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>自動化コンサルティング</h3>
+                    <p>業務分析から自動化提案、ROI試算まで、自動化導入のための総合的なコンサルティングを提供します。</p>
+                    <ul class="service-features">
+                        <li>業務フロー分析</li>
+                        <li>自動化ポイント特定</li>
+                        <li>ROI・効果試算</li>
+                        <li>段階的導入計画</li>
+                    </ul>
+                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>自動化のメリット</h2>
+                <p>業務自動化がもたらす具体的な効果</p>
+            </div>
+            <div class="benefits-slider">
+                <div class="benefit-comparison">
+                    <div class="benefit-before">
+                        <h3>自動化前</h3>
+                        <div class="benefit-icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <ul>
+                            <li>データ入力に週10時間</li>
+                            <li>手作業によるミス発生</li>
+                            <li>レポート作成に毎月2日</li>
+                            <li>情報共有の遅延</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-slider-control">
+                        <input type="range" min="0" max="100" value="50" class="slider" id="benefitSlider">
+                    </div>
+                    <div class="benefit-after">
+                        <h3>自動化後</h3>
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <ul>
+                            <li>データ処理が自動化</li>
+                            <li>エラー率95%減少</li>
+                            <li>レポートは自動生成</li>
+                            <li>リアルタイム情報共有</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="roi-calculator">
+                    <h3>ROI計算機</h3>
+                    <p>あなたの業務における自動化の効果を試算してみましょう</p>
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="taskHours">現在の作業時間（週あたり）</label>
+                            <input type="number" id="taskHours" min="1" max="100" value="10">
+                            <span>時間</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="hourlyRate">時給換算</label>
+                            <input type="number" id="hourlyRate" min="1000" max="10000" value="3000">
+                            <span>円</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="automationCost">自動化導入コスト（概算）</label>
+                            <input type="number" id="automationCost" min="50000" max="1000000" value="150000">
+                            <span>円</span>
+                        </div>
+                        <button id="calculateROI" class="btn primary-btn">計算する</button>
+                    </div>
+                    <div class="calculator-result">
+                        <div class="result-item">
+                            <span>月間削減時間</span>
+                            <strong id="savedHours">40</strong>
+                            <span>時間</span>
+                        </div>
+                        <div class="result-item">
+                            <span>月間コスト削減</span>
+                            <strong id="monthlySavings">120,000</strong>
+                            <span>円</span>
+                        </div>
+                        <div class="result-item">
+                            <span>投資回収期間</span>
+                            <strong id="roiPeriod">1.25</strong>
+                            <span>ヶ月</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>実績</h2>
+                <p>これまでの自動化プロジェクト</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="gas">GAS</button>
+                <button class="filter-btn" data-filter="make">Make</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress連携</button>
+                <button class="filter-btn" data-filter="notion-slack">Notion/Slack連携</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="gas notion-slack">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400" alt="GASとNotionの連携プロジェクト">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Googleカレンダーと<br>Notionデータベースの完全連携</h3>
+                            <p>予定の自動同期システム</p>
+                            <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project1">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="make wordpress">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400" alt="MakeとWordPressの連携プロジェクト">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>ECサイトの<br>注文処理自動化</h3>
+                            <p>WooCommerceとCRMの連携</p>
+                            <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project2">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="gas">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400" alt="GASによる自動レポート生成">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>月次レポート<br>自動生成システム</h3>
+                            <p>データ集計から資料作成まで自動化</p>
+                            <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project3">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="make notion-slack">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400" alt="MakeとSlackの連携">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>営業情報の<br>自動集約・通知システム</h3>
+                            <p>Slackへのリアルタイム通知</p>
+                            <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project4">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="gas wordpress">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400" alt="GASとWordPressの連携">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>スプレッドシートから<br>WordPressへの自動投稿</h3>
+                            <p>コンテンツ管理の効率化</p>
+                            <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project5">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="make notion-slack">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://via.placeholder.com/600x400" alt="MakeとNotionの連携">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>顧客管理システムと<br>Notionの連携</h3>
+                            <p>顧客情報の一元管理</p>
+                            <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project6">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- プロジェクト詳細モーダル -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- モーダル内容はJavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>自動化の流れ</h2>
+                <p>プロジェクト進行のステップ</p>
+            </div>
+            <div class="workflow-steps">
+                <div class="workflow-step" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>ヒアリング</h3>
+                        <p>現状の業務フローや課題をお聞きし、自動化のポイントを特定します。</p>
+                    </div>
+                </div>
+                <div class="workflow-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>提案・見積</h3>
+                        <p>最適な自動化プランと期待される効果、コストを提案します。</p>
+                    </div>
+                </div>
+                <div class="workflow-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>開発・実装</h3>
+                        <p>GASやMakeを使用して、効率的な自動化システムを構築します。</p>
+                    </div>
+                </div>
+                <div class="workflow-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>テスト・調整</h3>
+                        <p>実際の環境で動作確認を行い、必要に応じて調整します。</p>
+                    </div>
+                </div>
+                <div class="workflow-step" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>導入・サポート</h3>
+                        <p>本番環境への導入と、安定稼働のためのサポートを提供します。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="workflow-progress">
+                <div class="progress-bar">
+                    <div class="progress-indicator" style="width: 20%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>お客様の声</h2>
+                <p>自動化導入の成果</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-container">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>毎月のレポート作成に丸2日かかっていた作業が、ボタン一つで完了するようになりました。データの正確性も向上し、分析に集中できるようになりました。</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/100x100" alt="顧客A">
+                                <div class="author-info">
+                                    <h4>A社 マーケティング部長</h4>
+                                    <p>GAS自動レポート生成システム導入</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>ECサイトの注文処理が自動化され、以前は1日に30分以上かかっていた作業が完全に自動化されました。ミスも減り、顧客満足度が向上しています。</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/100x100" alt="顧客B">
+                                <div class="author-info">
+                                    <h4>B社 EC事業責任者</h4>
+                                    <p>Make & WordPress連携システム導入</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>NotionとSlackを連携させたことで、情報共有がスムーズになり、チーム全体の生産性が20%以上向上しました。もっと早く導入すればよかったです。</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/100x100" alt="顧客C">
+                                <div class="author-info">
+                                    <h4>C社 プロジェクトマネージャー</h4>
+                                    <p>Notion & Slack連携システム導入</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="testimonial-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+                    <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>ブログ</h2>
+                <p>自動化に関する知見と情報</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/600x400" alt="GASの基礎">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2025年5月15日</div>
+                        <h3>Google Apps Scriptで始める業務自動化の基礎</h3>
+                        <p>GASを使った業務自動化の基本的な考え方と、初心者でも実装できる簡単なスクリプト例を紹介します。</p>
+                        <a href="#" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/600x400" alt="Makeの活用法">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2025年5月1日</div>
+                        <h3>Makeを活用したノーコード自動化の可能性</h3>
+                        <p>プログラミング知識がなくても実現できるMakeを使った業務自動化の事例と、効果的な活用方法を解説します。</p>
+                        <a href="#" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/600x400" alt="自動化ROI">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2025年4月20日</div>
+                        <h3>業務自動化のROIを最大化するための5つのポイント</h3>
+                        <p>自動化投資の効果を最大限に引き出すための重要なポイントと、成功事例から学ぶ実践的なアプローチを紹介します。</p>
+                        <a href="#" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-more">
+                <a href="#" class="btn secondary-btn">もっと見る</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>お問い合わせ</h2>
+                <p>自動化についてのご相談はこちら</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>メール</h3>
+                        <p>info@autoflowexpert.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>対応時間</h3>
+                        <p>平日 9:00 - 18:00</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>所在地</h3>
+                        <p>東京都渋谷区</p>
+                    </div>
+                    <div class="external-links">
+                        <h3>外部サービス</h3>
+                        <div class="external-buttons">
+                            <a href="https://coconala.com/" target="_blank" class="external-link coconala">
+                                <i class="fas fa-external-link-alt"></i> ココナラでのサービスを見る
+                            </a>
+                            <a href="https://github.com/" target="_blank" class="external-link github">
+                                <i class="fab fa-github"></i> GitHubプロフィール
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">お名前 <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">会社名</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">件名 <span class="required">*</span></label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">メッセージ <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">ご興味のあるサービス</label>
+                            <select id="service" name="service">
+                                <option value="">選択してください</option>
+                                <option value="gas">Google Apps Script開発</option>
+                                <option value="make">Make連携シナリオ構築</option>
+                                <option value="notion-slack">Notion/Slack連携開発</option>
+                                <option value="consulting">自動化コンサルティング</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn primary-btn">送信する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AutoFlow<span>Expert</span></h2>
+                    <p>業務自動化のプロフェッショナル</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-link-group">
+                        <h3>サイトマップ</h3>
+                        <ul>
+                            <li><a href="#home">ホーム</a></li>
+                            <li><a href="#about">プロフィール</a></li>
+                            <li><a href="#services">サービス</a></li>
+                            <li><a href="#portfolio">実績</a></li>
+                            <li><a href="#blog">ブログ</a></li>
+                            <li><a href="#contact">お問い合わせ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h3>サービス</h3>
+                        <ul>
+                            <li><a href="#services">GAS開発</a></li>
+                            <li><a href="#services">Make連携</a></li>
+                            <li><a href="#services">Notion/Slack連携</a></li>
+                            <li><a href="#services">自動化コンサルティング</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h3>SNS</h3>
+                        <ul class="social-links">
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                            <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AutoFlowExpert. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
