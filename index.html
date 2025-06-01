@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -37,6 +36,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="page-transition"></div>
 
     <section id="home" class="hero">
         <div class="container">
@@ -84,15 +85,6 @@
                 <p>自動化のプロフェッショナルとして</p>
             </div>
             <div class="about-content">
-                <div class="about-image">
-                    <div class="profile-image">
-                        <img src="https://via.placeholder.com/400x400" alt="プロフィール画像">
-                    </div>
-                    <div class="experience-badge">
-                        <span>5年以上</span>
-                        <p>自動化開発経験</p>
-                    </div>
-                </div>
                 <div class="about-text">
                     <h3>はじめまして、<span class="highlight">AutoFlowExpert</span>です</h3>
                     <p>Google Apps Script (GAS) とMakeを専門とする業務自動化エキスパートとして、様々な企業や個人事業主の方々の業務効率化をサポートしています。</p>
@@ -148,7 +140,7 @@
                         <li>フォーム連携自動処理</li>
                         <li>カスタムUI開発</li>
                     </ul>
-                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                    <a href="services.html" class="btn secondary-btn">詳細を見る</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -162,7 +154,7 @@
                         <li>SNS自動投稿・管理</li>
                         <li>Eコマース処理自動化</li>
                     </ul>
-                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                    <a href="services-make.html" class="btn secondary-btn">詳細を見る</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -176,7 +168,7 @@
                         <li>タスク管理自動化</li>
                         <li>情報集約ダッシュボード</li>
                     </ul>
-                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                    <a href="services-notion.html" class="btn secondary-btn">詳細を見る</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -190,7 +182,7 @@
                         <li>ROI・効果試算</li>
                         <li>段階的導入計画</li>
                     </ul>
-                    <a href="#contact" class="btn secondary-btn">詳細を問い合わせる</a>
+                    <a href="services-consulting.html" class="btn secondary-btn">詳細を見る</a>
                 </div>
             </div>
         </div>
@@ -349,14 +341,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="make notion-slack">
+                <div class="portfolio-item" data-category="notion-slack">
                     <div class="portfolio-card">
                         <div class="portfolio-image">
-                            <img src="https://via.placeholder.com/600x400" alt="MakeとNotionの連携">
+                            <img src="https://via.placeholder.com/600x400" alt="NotionとCRMの連携">
                         </div>
                         <div class="portfolio-overlay">
                             <h3>顧客管理システムと<br>Notionの連携</h3>
-                            <p>顧客情報の一元管理</p>
+                            <p>情報の一元管理を実現</p>
                             <a href="#" class="btn secondary-btn portfolio-details-btn" data-id="project6">詳細を見る</a>
                         </div>
                     </div>
@@ -365,139 +357,23 @@
         </div>
     </section>
 
-    <!-- プロジェクト詳細モーダル -->
-    <div class="modal" id="portfolioModal">
+    <div id="portfolioModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>プロジェクト詳細</h2>
+                <span class="close-modal">&times;</span>
+            </div>
             <div class="modal-body">
                 <!-- モーダル内容はJavaScriptで動的に生成 -->
             </div>
         </div>
     </div>
 
-    <section id="workflow" class="workflow">
-        <div class="container">
-            <div class="section-header">
-                <h2>自動化の流れ</h2>
-                <p>プロジェクト進行のステップ</p>
-            </div>
-            <div class="workflow-steps">
-                <div class="workflow-step" data-step="1">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>ヒアリング</h3>
-                        <p>現状の業務フローや課題をお聞きし、自動化のポイントを特定します。</p>
-                    </div>
-                </div>
-                <div class="workflow-step" data-step="2">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>提案・見積</h3>
-                        <p>最適な自動化プランと期待される効果、コストを提案します。</p>
-                    </div>
-                </div>
-                <div class="workflow-step" data-step="3">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>開発・実装</h3>
-                        <p>GASやMakeを使用して、効率的な自動化システムを構築します。</p>
-                    </div>
-                </div>
-                <div class="workflow-step" data-step="4">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>テスト・調整</h3>
-                        <p>実際の環境で動作確認を行い、必要に応じて調整します。</p>
-                    </div>
-                </div>
-                <div class="workflow-step" data-step="5">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>導入・サポート</h3>
-                        <p>本番環境への導入と、安定稼働のためのサポートを提供します。</p>
-                    </div>
-                </div>
-            </div>
-            <div class="workflow-progress">
-                <div class="progress-bar">
-                    <div class="progress-indicator" style="width: 20%"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>お客様の声</h2>
-                <p>自動化導入の成果</p>
-            </div>
-            <div class="testimonial-slider">
-                <div class="testimonial-container">
-                    <div class="testimonial-card active">
-                        <div class="testimonial-content">
-                            <div class="quote-icon">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p>毎月のレポート作成に丸2日かかっていた作業が、ボタン一つで完了するようになりました。データの正確性も向上し、分析に集中できるようになりました。</p>
-                            <div class="testimonial-author">
-                                <img src="https://via.placeholder.com/100x100" alt="顧客A">
-                                <div class="author-info">
-                                    <h4>A社 マーケティング部長</h4>
-                                    <p>GAS自動レポート生成システム導入</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <div class="quote-icon">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p>ECサイトの注文処理が自動化され、以前は1日に30分以上かかっていた作業が完全に自動化されました。ミスも減り、顧客満足度が向上しています。</p>
-                            <div class="testimonial-author">
-                                <img src="https://via.placeholder.com/100x100" alt="顧客B">
-                                <div class="author-info">
-                                    <h4>B社 EC事業責任者</h4>
-                                    <p>Make & WordPress連携システム導入</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <div class="quote-icon">
-                                <i class="fas fa-quote-left"></i>
-                            </div>
-                            <p>NotionとSlackを連携させたことで、情報共有がスムーズになり、チーム全体の生産性が20%以上向上しました。もっと早く導入すればよかったです。</p>
-                            <div class="testimonial-author">
-                                <img src="https://via.placeholder.com/100x100" alt="顧客C">
-                                <div class="author-info">
-                                    <h4>C社 プロジェクトマネージャー</h4>
-                                    <p>Notion & Slack連携システム導入</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-controls">
-                    <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="testimonial-dots">
-                        <span class="dot active" data-index="0"></span>
-                        <span class="dot" data-index="1"></span>
-                        <span class="dot" data-index="2"></span>
-                    </div>
-                    <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="blog" class="blog">
         <div class="container">
             <div class="section-header">
                 <h2>ブログ</h2>
-                <p>自動化に関する知見と情報</p>
+                <p>業務自動化に関する情報発信</p>
             </div>
             <div class="blog-grid">
                 <div class="blog-card">
@@ -508,7 +384,7 @@
                         <div class="blog-date">2025年5月15日</div>
                         <h3>Google Apps Scriptで始める業務自動化の基礎</h3>
                         <p>GASを使った業務自動化の基本的な考え方と、初心者でも実装できる簡単なスクリプト例を紹介します。</p>
-                        <a href="#" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        <a href="blog-1.html" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="blog-card">
@@ -519,7 +395,7 @@
                         <div class="blog-date">2025年5月1日</div>
                         <h3>Makeを活用したノーコード自動化の可能性</h3>
                         <p>プログラミング知識がなくても実現できるMakeを使った業務自動化の事例と、効果的な活用方法を解説します。</p>
-                        <a href="#" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        <a href="blog-2.html" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="blog-card">
@@ -530,12 +406,12 @@
                         <div class="blog-date">2025年4月20日</div>
                         <h3>業務自動化のROIを最大化するための5つのポイント</h3>
                         <p>自動化投資の効果を最大限に引き出すための重要なポイントと、成功事例から学ぶ実践的なアプローチを紹介します。</p>
-                        <a href="#" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        <a href="blog-3.html" class="read-more">続きを読む <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="blog-more">
-                <a href="#" class="btn secondary-btn">もっと見る</a>
+                <a href="#blog" class="btn secondary-btn">もっと見る</a>
             </div>
         </div>
     </section>
@@ -643,10 +519,10 @@
                     <div class="footer-link-group">
                         <h3>サービス</h3>
                         <ul>
-                            <li><a href="#services">GAS開発</a></li>
-                            <li><a href="#services">Make連携</a></li>
-                            <li><a href="#services">Notion/Slack連携</a></li>
-                            <li><a href="#services">自動化コンサルティング</a></li>
+                            <li><a href="services.html">GAS開発</a></li>
+                            <li><a href="services-make.html">Make連携</a></li>
+                            <li><a href="services-notion.html">Notion/Slack連携</a></li>
+                            <li><a href="services-consulting.html">自動化コンサルティング</a></li>
                         </ul>
                     </div>
                     <div class="footer-link-group">

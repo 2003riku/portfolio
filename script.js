@@ -1,10 +1,13 @@
 /**
  * AutoFlowExpert - 業務自動化専門家ポートフォリオサイト
- * JavaScript機能
+ * JavaScript機能 - 洗練されたUI/UX向け改善版
  */
 
 // DOM要素の読み込み完了後に実行
 document.addEventListener('DOMContentLoaded', function() {
+    // システム設定のダークモード検出と適用
+    initSystemThemeDetection();
+    
     // ダークモード切り替え
     initThemeToggle();
     
@@ -26,11 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ポートフォリオモーダル
     initPortfolioModal();
     
-    // ワークフローステップ
-    initWorkflowSteps();
-    
-    // お客様の声スライダー
-    initTestimonialSlider();
+    // 自動化フローアニメーション
+    initAutomationFlowAnimation();
     
     // ビフォー/アフタースライダー
     initBenefitSlider();
@@ -46,21 +46,56 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 要素のフェードインアニメーション
     initFadeInAnimation();
+    
+    // ページ遷移アニメーション
+    initPageTransitions();
 });
+
+/**
+ * システム設定のダークモード検出と適用
+ */
+function initSystemThemeDetection() {
+    // システムのダークモード設定を検出
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // システム設定がダークモードの場合、ダークモードを適用
+    if (prefersDarkScheme.matches) {
+        document.body.classList.add('dark-mode');
+        const themeSwitchText = document.querySelector('#theme-switch span');
+        if (themeSwitchText) {
+            themeSwitchText.textContent = 'ライトモード';
+        }
+    }
+    
+    // システム設定の変更を監視
+    prefersDarkScheme.addEventListener('change', (e) => {
+        if (e.matches) {
+            document.body.classList.add('dark-mode');
+            const themeSwitchText = document.querySelector('#theme-switch span');
+            if (themeSwitchText) {
+                themeSwitchText.textContent = 'ライトモード';
+            }
+        } else {
+            document.body.classList.remove('dark-mode');
+            const themeSwitchText = document.querySelector('#theme-switch span');
+            if (themeSwitchText) {
+                themeSwitchText.textContent = 'ダークモード';
+            }
+        }
+    });
+}
 
 /**
  * ダークモード切り替え機能
  */
 function initThemeToggle() {
     const themeSwitch = document.getElementById('theme-switch');
+    if (!themeSwitch) return;
+    
     const themeSwitchText = themeSwitch.querySelector('span');
     
-    // ローカルストレージからテーマ設定を取得
-    const savedTheme = localStorage.getItem('theme');
-    
-    // 保存されたテーマがあれば適用
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
+    // 現在のダークモード状態に合わせてテキスト更新
+    if (document.body.classList.contains('dark-mode')) {
         themeSwitchText.textContent = 'ライトモード';
     }
     
@@ -69,10 +104,8 @@ function initThemeToggle() {
         document.body.classList.toggle('dark-mode');
         
         if (document.body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
             themeSwitchText.textContent = 'ライトモード';
         } else {
-            localStorage.setItem('theme', 'light');
             themeSwitchText.textContent = 'ダークモード';
         }
     });
@@ -83,6 +116,7 @@ function initThemeToggle() {
  */
 function initSkillBars() {
     const skillLevels = document.querySelectorAll('.skill-level');
+    if (skillLevels.length === 0) return;
     
     // Intersection Observerを使用して画面に表示されたときにアニメーション
     const observer = new IntersectionObserver((entries) => {
@@ -117,6 +151,7 @@ function initSkillBars() {
 function initMobileNav() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    if (!menuToggle || !navLinks) return;
     
     menuToggle.addEventListener('click', function() {
         navLinks.classList.toggle('active');
@@ -147,26 +182,30 @@ function initMobileNav() {
     
     // アクティブなナビゲーションリンクの設定
     window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
+        // ハッシュリンクがある場合のみ実行
+        if (window.location.pathname === '/' || window.location.pathname.includes('index.html')) {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
             
-            if (pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href && href.includes('#' + current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
     });
 }
 
@@ -175,6 +214,7 @@ function initMobileNav() {
  */
 function initScrollDetection() {
     const header = document.querySelector('header');
+    if (!header) return;
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -190,6 +230,7 @@ function initScrollDetection() {
  */
 function initBackToTop() {
     const backToTopButton = document.querySelector('.back-to-top');
+    if (!backToTopButton) return;
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
@@ -213,6 +254,7 @@ function initBackToTop() {
 function initPortfolioFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
+    if (filterButtons.length === 0 || portfolioItems.length === 0) return;
     
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -246,6 +288,8 @@ function initPortfolioFilter() {
  */
 function initPortfolioModal() {
     const modal = document.getElementById('portfolioModal');
+    if (!modal) return;
+    
     const modalBody = modal.querySelector('.modal-body');
     const closeModal = modal.querySelector('.close-modal');
     const detailButtons = document.querySelectorAll('.portfolio-details-btn');
@@ -300,16 +344,6 @@ function initPortfolioModal() {
             tools: 'Google Apps Script、WordPress REST API、Google Sheets',
             results: '1記事あたり15分かかっていた投稿作業が完全に自動化され、月間で約40時間の工数削減を実現。フォーマットの統一性も保たれ、品質が向上しました。',
             testimonial: '「記事投稿の手間から解放され、コンテンツの質向上に集中できるようになりました。クライアントからの評価も上がり、契約更新率が向上しています。」',
-            image: 'https://via.placeholder.com/800x500'
-        },
-        project6: {
-            title: '顧客管理システムと<br>Notionの連携',
-            client: 'マーケティングコンサルタント',
-            challenge: '顧客管理システム（CRM）とプロジェクト管理ツールが分離しており、情報の二重管理や不整合が発生していました。特にクライアントの最新状況をNotionのプロジェクト管理に反映する作業が煩雑でした。',
-            solution: 'MakeとNotionのAPIを活用し、CRMの顧客情報や案件状況の変更を検知して、自動的にNotionデータベースに反映するシステムを構築しました。双方向の同期により、どちらのツールからでも最新情報を確認・更新できます。',
-            tools: 'Make、Notion API、CRM API',
-            results: '情報の二重管理がなくなり、週5時間の工数削減を実現。データの不整合もなくなり、クライアント対応の質が向上しました。プロジェクト進行の可視化も容易になり、納期遅延のリスクが低減しています。',
-            testimonial: '「システム間の情報連携が自動化されたことで、常に最新情報に基づいた意思決定ができるようになりました。クライアント満足度も向上し、リピート案件が増えています。」',
             image: 'https://via.placeholder.com/800x500'
         }
     };
@@ -375,10 +409,12 @@ function initPortfolioModal() {
     });
     
     // モーダルを閉じる
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // スクロール再開
-    });
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // スクロール再開
+        });
+    }
     
     // モーダル外クリックで閉じる
     window.addEventListener('click', function(e) {
@@ -390,7 +426,7 @@ function initPortfolioModal() {
     
     // ESCキーでモーダルを閉じる
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
+        if (e.key === 'Escape' && modal && modal.style.display === 'block') {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
@@ -398,130 +434,79 @@ function initPortfolioModal() {
 }
 
 /**
- * ワークフローステップ
+ * 自動化フローアニメーション
  */
-function initWorkflowSteps() {
-    const workflowSteps = document.querySelectorAll('.workflow-step');
-    const progressIndicator = document.querySelector('.progress-indicator');
-    let currentStep = 0;
+function initAutomationFlowAnimation() {
+    const automationGraphic = document.querySelector('.automation-graphic');
+    if (!automationGraphic) return;
     
-    // 初期状態
-    updateWorkflowStep(currentStep);
+    // データフロー要素を追加
+    const dataFlow1 = document.createElement('div');
+    dataFlow1.className = 'data-flow data-flow-1';
+    automationGraphic.appendChild(dataFlow1);
     
-    // 各ステップのクリックイベント
-    workflowSteps.forEach((step, index) => {
-        step.addEventListener('click', function() {
-            currentStep = index;
-            updateWorkflowStep(currentStep);
+    const dataFlow2 = document.createElement('div');
+    dataFlow2.className = 'data-flow data-flow-2';
+    automationGraphic.appendChild(dataFlow2);
+    
+    // ノードのホバーエフェクト強化
+    const nodes = automationGraphic.querySelectorAll('.node');
+    nodes.forEach(node => {
+        node.addEventListener('mouseenter', function() {
+            // ノードの説明テキストを表示
+            const nodeInfo = document.createElement('div');
+            nodeInfo.className = 'node-info';
+            
+            let infoText = '';
+            if (node.classList.contains('node-1')) {
+                infoText = 'データ入力: 様々なソースからのデータを収集';
+            } else if (node.classList.contains('node-2')) {
+                infoText = '自動処理: AIによるデータ分析と処理';
+            } else if (node.classList.contains('node-3')) {
+                infoText = '結果出力: レポート生成と自動配信';
+            }
+            
+            nodeInfo.textContent = infoText;
+            node.appendChild(nodeInfo);
+            
+            // アニメーション一時停止
+            document.querySelectorAll('.data-flow').forEach(flow => {
+                flow.style.animationPlayState = 'paused';
+            });
+        });
+        
+        node.addEventListener('mouseleave', function() {
+            // ノードの説明テキストを削除
+            const nodeInfo = node.querySelector('.node-info');
+            if (nodeInfo) {
+                node.removeChild(nodeInfo);
+            }
+            
+            // アニメーション再開
+            document.querySelectorAll('.data-flow').forEach(flow => {
+                flow.style.animationPlayState = 'running';
+            });
         });
     });
     
-    // 自動切り替え（オプション）
-    /*
-    setInterval(() => {
-        currentStep = (currentStep + 1) % workflowSteps.length;
-        updateWorkflowStep(currentStep);
-    }, 5000);
-    */
-    
-    // ワークフローステップの更新
-    function updateWorkflowStep(stepIndex) {
-        workflowSteps.forEach((step, index) => {
-            if (index === stepIndex) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-        
-        // プログレスバーの更新
-        const progressPercentage = ((stepIndex + 1) / workflowSteps.length) * 100;
-        progressIndicator.style.width = `${progressPercentage}%`;
-    }
-    
-    // Intersection Observerでビューポートに入ったときに最初のステップをアクティブに
+    // Intersection Observerでビューポートに入ったときにアニメーション開始
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                updateWorkflowStep(0);
+                // データフローアニメーションを開始
+                dataFlow1.style.animation = 'flowAnimation1 3s infinite';
+                
+                // 少し遅延させて2つ目のフローを開始
+                setTimeout(() => {
+                    dataFlow2.style.animation = 'flowAnimation2 3s infinite';
+                }, 1500);
+                
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.5 });
     
-    observer.observe(document.querySelector('.workflow-steps'));
-}
-
-/**
- * お客様の声スライダー
- */
-function initTestimonialSlider() {
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    const prevButton = document.querySelector('.testimonial-prev');
-    const nextButton = document.querySelector('.testimonial-next');
-    const dots = document.querySelectorAll('.testimonial-dots .dot');
-    let currentIndex = 0;
-    
-    // 初期状態
-    updateTestimonial(currentIndex);
-    
-    // 前へボタン
-    prevButton.addEventListener('click', function() {
-        currentIndex = (currentIndex - 1 + testimonialCards.length) % testimonialCards.length;
-        updateTestimonial(currentIndex);
-    });
-    
-    // 次へボタン
-    nextButton.addEventListener('click', function() {
-        currentIndex = (currentIndex + 1) % testimonialCards.length;
-        updateTestimonial(currentIndex);
-    });
-    
-    // ドットクリック
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-            currentIndex = index;
-            updateTestimonial(currentIndex);
-        });
-    });
-    
-    // 自動切り替え
-    let testimonialInterval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % testimonialCards.length;
-        updateTestimonial(currentIndex);
-    }, 6000);
-    
-    // マウスオーバーで自動切り替え停止
-    const testimonialSlider = document.querySelector('.testimonial-slider');
-    testimonialSlider.addEventListener('mouseenter', () => {
-        clearInterval(testimonialInterval);
-    });
-    
-    testimonialSlider.addEventListener('mouseleave', () => {
-        testimonialInterval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % testimonialCards.length;
-            updateTestimonial(currentIndex);
-        }, 6000);
-    });
-    
-    // テスティモニアル更新
-    function updateTestimonial(index) {
-        testimonialCards.forEach((card, i) => {
-            if (i === index) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-        });
-        
-        dots.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
+    observer.observe(automationGraphic);
 }
 
 /**
@@ -529,74 +514,61 @@ function initTestimonialSlider() {
  */
 function initBenefitSlider() {
     const slider = document.getElementById('benefitSlider');
-    const beforeElement = document.querySelector('.benefit-before');
-    const afterElement = document.querySelector('.benefit-after');
+    if (!slider) return;
     
-    // スライダー値変更イベント
+    const benefitBefore = document.querySelector('.benefit-before');
+    const benefitAfter = document.querySelector('.benefit-after');
+    
     slider.addEventListener('input', function() {
         const value = this.value;
         
-        // ビフォー要素のスタイル変更
-        beforeElement.style.opacity = (100 - value) / 100;
-        beforeElement.style.transform = `scale(${0.9 + (100 - value) / 1000})`;
+        // スライダーの値に応じてビフォー/アフターの表示を調整
+        benefitBefore.style.opacity = (100 - value) / 100;
+        benefitAfter.style.opacity = value / 100;
         
-        // アフター要素のスタイル変更
-        afterElement.style.opacity = value / 100;
-        afterElement.style.transform = `scale(${0.9 + value / 1000})`;
+        // 3D効果を追加
+        benefitBefore.style.transform = `scale(${(100 - value) / 100 * 0.2 + 0.8})`;
+        benefitAfter.style.transform = `scale(${value / 100 * 0.2 + 0.8})`;
     });
-    
-    // 初期値設定
-    slider.value = 50;
-    const event = new Event('input');
-    slider.dispatchEvent(event);
 }
 
 /**
  * ROI計算機
  */
 function initROICalculator() {
-    const taskHoursInput = document.getElementById('taskHours');
-    const hourlyRateInput = document.getElementById('hourlyRate');
-    const automationCostInput = document.getElementById('automationCost');
-    const calculateButton = document.getElementById('calculateROI');
+    const calculateROI = document.getElementById('calculateROI');
+    if (!calculateROI) return;
     
-    const savedHoursElement = document.getElementById('savedHours');
-    const monthlySavingsElement = document.getElementById('monthlySavings');
-    const roiPeriodElement = document.getElementById('roiPeriod');
-    
-    // 計算ボタンクリックイベント
-    calculateButton.addEventListener('click', function() {
-        // 入力値の取得
-        const taskHours = parseFloat(taskHoursInput.value);
-        const hourlyRate = parseFloat(hourlyRateInput.value);
-        const automationCost = parseFloat(automationCostInput.value);
+    calculateROI.addEventListener('click', function() {
+        const taskHours = parseFloat(document.getElementById('taskHours').value);
+        const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+        const automationCost = parseFloat(document.getElementById('automationCost').value);
         
-        // 月間削減時間（週間時間 × 4週）
-        const monthlySavedHours = taskHours * 4;
+        // 値のバリデーション
+        if (isNaN(taskHours) || isNaN(hourlyRate) || isNaN(automationCost)) {
+            alert('すべての項目に数値を入力してください');
+            return;
+        }
         
-        // 月間コスト削減（月間削減時間 × 時給）
-        const monthlySavings = monthlySavedHours * hourlyRate;
+        // 計算
+        const savedHours = taskHours * 4; // 月間削減時間（週あたり時間 × 4週）
+        const monthlySavings = savedHours * hourlyRate; // 月間コスト削減
+        const roiPeriod = automationCost / monthlySavings; // 投資回収期間（月）
         
-        // 投資回収期間（自動化コスト ÷ 月間コスト削減）
-        const roiPeriod = automationCost / monthlySavings;
+        // 結果を表示
+        document.getElementById('savedHours').textContent = savedHours.toFixed(0);
+        document.getElementById('monthlySavings').textContent = monthlySavings.toLocaleString();
+        document.getElementById('roiPeriod').textContent = roiPeriod.toFixed(2);
         
-        // 結果の表示
-        savedHoursElement.textContent = monthlySavedHours.toFixed(0);
-        monthlySavingsElement.textContent = monthlySavings.toLocaleString();
-        roiPeriodElement.textContent = roiPeriod.toFixed(2);
-        
-        // 結果のアニメーション
-        const resultItems = document.querySelectorAll('.result-item');
+        // 結果表示のアニメーション
+        const resultItems = document.querySelectorAll('.result-item strong');
         resultItems.forEach(item => {
-            item.classList.add('highlight');
+            item.style.animation = 'none';
             setTimeout(() => {
-                item.classList.remove('highlight');
-            }, 1000);
+                item.style.animation = 'fadeInUp 0.5s forwards';
+            }, 10);
         });
     });
-    
-    // 初期計算を実行
-    calculateButton.click();
 }
 
 /**
@@ -604,47 +576,31 @@ function initROICalculator() {
  */
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // フォームデータの取得
-        const formData = new FormData(contactForm);
-        const formValues = {};
+        // フォームのバリデーション
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
         
-        for (const [key, value] of formData.entries()) {
-            formValues[key] = value;
-        }
-        
-        // バリデーション
-        let isValid = true;
-        const requiredFields = ['name', 'email', 'subject', 'message'];
-        
-        requiredFields.forEach(field => {
-            const input = contactForm.querySelector(`[name="${field}"]`);
-            
-            if (!formValues[field]) {
-                isValid = false;
-                input.classList.add('error');
-            } else {
-                input.classList.remove('error');
-            }
-        });
-        
-        // メールアドレスの形式チェック
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (formValues.email && !emailRegex.test(formValues.email)) {
-            isValid = false;
-            contactForm.querySelector('[name="email"]').classList.add('error');
-        }
-        
-        if (!isValid) {
-            alert('必須項目を入力してください。');
+        if (!name || !email || !subject || !message) {
+            alert('必須項目をすべて入力してください');
             return;
         }
         
-        // 実際の送信処理（デモでは省略）
-        alert('お問い合わせありがとうございます。内容を確認次第、ご連絡いたします。');
+        // メール形式のバリデーション
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('有効なメールアドレスを入力してください');
+            return;
+        }
+        
+        // 送信成功メッセージ（実際の送信処理は別途サーバーサイドで実装）
+        alert('お問い合わせありがとうございます。内容を確認の上、48時間以内にご返信いたします。');
         contactForm.reset();
     });
 }
@@ -657,21 +613,21 @@ function initSmoothScroll() {
     
     links.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
+            // 現在のページにそのIDが存在する場合のみスクロール処理
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
             
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (!targetElement) return;
-            
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetElement.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            if (targetElement) {
+                e.preventDefault();
+                
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 }
@@ -680,8 +636,10 @@ function initSmoothScroll() {
  * 要素のフェードインアニメーション
  */
 function initFadeInAnimation() {
-    const fadeElements = document.querySelectorAll('.service-card, .portfolio-card, .blog-card, .contact-card');
+    // アニメーション対象の要素
+    const animatedElements = document.querySelectorAll('.service-card, .portfolio-card, .blog-card, .about-text, .hero-content, .hero-image');
     
+    // Intersection Observerを使用して画面に表示されたときにアニメーション
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -691,7 +649,149 @@ function initFadeInAnimation() {
         });
     }, { threshold: 0.1 });
     
-    fadeElements.forEach(element => {
+    // 各要素を監視
+    animatedElements.forEach(element => {
+        element.classList.add('animate-on-scroll');
         observer.observe(element);
     });
 }
+
+/**
+ * ページ遷移アニメーション
+ */
+function initPageTransitions() {
+    // 外部リンク（ハッシュリンクを除く）のクリックイベント
+    const externalLinks = document.querySelectorAll('a:not([href^="#"])');
+    const pageTransition = document.querySelector('.page-transition');
+    
+    if (!pageTransition) return;
+    
+    externalLinks.forEach(link => {
+        // 同じドメイン内のリンクのみ処理
+        if (link.hostname === window.location.hostname && !link.getAttribute('target')) {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // ハッシュリンクや空リンクは除外
+                if (href && href !== '#' && !href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // 遷移アニメーション
+                    pageTransition.classList.add('active');
+                    
+                    // アニメーション完了後に遷移
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                }
+            });
+        }
+    });
+    
+    // ページ読み込み時の遷移アニメーション（入場）
+    window.addEventListener('load', function() {
+        pageTransition.classList.add('exit');
+        
+        setTimeout(() => {
+            pageTransition.classList.remove('exit');
+            pageTransition.classList.remove('active');
+        }, 500);
+    });
+}
+
+// サービスカードのクリックイベント
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach((card, index) => {
+        card.addEventListener('click', function() {
+            let targetUrl;
+            
+            // カード内のリンクがあればそのURLを使用
+            const cardLink = card.querySelector('a');
+            if (cardLink) {
+                targetUrl = cardLink.getAttribute('href');
+            } else {
+                // インデックスに基づいてURLを設定
+                switch(index) {
+                    case 0:
+                        targetUrl = 'services.html';
+                        break;
+                    case 1:
+                        targetUrl = 'services-make.html';
+                        break;
+                    case 2:
+                        targetUrl = 'services-notion.html';
+                        break;
+                    case 3:
+                        targetUrl = 'services-consulting.html';
+                        break;
+                    default:
+                        targetUrl = 'services.html';
+                }
+            }
+            
+            // 遷移アニメーション
+            const pageTransition = document.querySelector('.page-transition');
+            if (pageTransition) {
+                pageTransition.classList.add('active');
+                
+                // アニメーション完了後に遷移
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 500);
+            } else {
+                window.location.href = targetUrl;
+            }
+        });
+    });
+    
+    // ポートフォリオカードのクリックイベント
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    
+    portfolioCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // 詳細ボタンのクリックは除外（モーダル表示のため）
+            if (!e.target.closest('.portfolio-details-btn')) {
+                const detailsBtn = card.querySelector('.portfolio-details-btn');
+                if (detailsBtn) {
+                    detailsBtn.click();
+                }
+            }
+        });
+    });
+    
+    // ブログカードのクリックイベント
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    blogCards.forEach((card, index) => {
+        card.addEventListener('click', function(e) {
+            // リンク要素のクリックは通常の動作を維持
+            if (!e.target.closest('a')) {
+                let targetUrl;
+                
+                // カード内のリンクがあればそのURLを使用
+                const cardLink = card.querySelector('a.read-more');
+                if (cardLink) {
+                    targetUrl = cardLink.getAttribute('href');
+                } else {
+                    // インデックスに基づいてURLを設定
+                    targetUrl = `blog-${index + 1}.html`;
+                }
+                
+                // 遷移アニメーション
+                const pageTransition = document.querySelector('.page-transition');
+                if (pageTransition) {
+                    pageTransition.classList.add('active');
+                    
+                    // アニメーション完了後に遷移
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 500);
+                } else {
+                    window.location.href = targetUrl;
+                }
+            }
+        });
+    });
+});
